@@ -68,24 +68,11 @@
         color: #bbbbbb;
       }
 
-      body.dark-theme .list-item.low-stock {
-        background-color: #4a2b2b; /* Darker red */
-      }
-      body.dark-theme .list-item.expiring-soon {
-        background-color: #4a422b; /* Darker orange */
-      }
-
       body.dark-theme .status-badge.low-stock {
         background-color: #e74c3c;
       }
-      body.dark-theme .status-badge.expiring-soon {
-        background-color: #f39c12;
-      }
       body.dark-theme .status-badge.normal-stock {
         background-color: #28a745; /* Darker green */
-      }
-      body.dark-theme .status-badge.expired {
-        background-color: #922b21; /* Darker red for expired */
       }
 
       body.dark-theme .back-btn {
@@ -143,6 +130,7 @@
         color: #ffffff;
       }
 
+      /* Navbar styles from the previous code */
       .navbar {
         background-color: #ffffff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -160,6 +148,7 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        cursor: pointer;
       }
 
       .navbar-logo i {
@@ -175,7 +164,7 @@
       }
 
       .navbar-right {
-        position: relative; /* Needed for positioning the modal */
+        position: relative;
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -340,7 +329,7 @@
 
       .settings-modal .logout-btn:hover {
         background-color: #c0392b;
-        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4-5px 7px rgba(0, 0, 0, 0.15);
         transform: translateY(-1px);
       }
 
@@ -349,10 +338,34 @@
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         transform: translateY(0);
       }
+      .dashboard {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-weight: bold;
+      }
+      .dashboard:hover {
+        background-color: #45a049;
+      }
+      .dashboard:active {
+        background-color: #3e8e41;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        transform: translateY(1px);
+      }
 
       .dashboard-main-content {
         padding: 2rem;
-        flex-grow: 1; /* Allows content to take available space */
+        flex-grow: 1;
       }
 
       .dashboard-container {
@@ -373,9 +386,10 @@
 
       .metrics-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-bottom: 2rem;
+        justify-items: center;
       }
 
       .metric-card {
@@ -385,6 +399,8 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
         text-align: center;
         transition: transform 0.2s ease;
+        width: 100%;
+        max-width: 280px;
       }
 
       .metric-card:hover {
@@ -400,13 +416,13 @@
       .metric-card p {
         font-size: 2.5rem;
         font-weight: 700;
-        color: #3498db;
+        color: #e74c3c;
         margin: 0;
       }
 
       .dashboard-sections {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: 1fr;
         gap: 2rem;
       }
 
@@ -424,7 +440,7 @@
 
       .section-card h3 {
         font-size: 1.5rem;
-        color: #3498db;
+        color: #e74c3c;
         margin-bottom: 1.2rem;
         display: flex;
         align-items: center;
@@ -469,26 +485,6 @@
       .status-badge.low-stock {
         background-color: #e74c3c;
       }
-      .status-badge.expiring-soon {
-        background-color: #f1c40f;
-      }
-      .status-badge.expired {
-        background-color: #c0392b;
-      }
-      .status-badge.normal-stock {
-        background-color: #2ecc71;
-      }
-
-      .recent-activity-list li {
-        flex-direction: column; /* Stack name and details */
-        align-items: flex-start;
-      }
-
-      .activity-details {
-        font-size: 0.9em;
-        color: #7f8c8d;
-        margin-top: 0.2em;
-      }
 
       .back-btn {
         display: block;
@@ -521,7 +517,7 @@
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #4CAF50; /* Green for success */
+        background-color: #4caf50;
         color: white;
         padding: 15px 25px;
         border-radius: 8px;
@@ -533,14 +529,13 @@
       }
 
       .message-box.error {
-        background-color: #f44336; /* Red for error */
+        background-color: #f44336;
       }
 
       .message-box.show {
         display: block;
         opacity: 1;
       }
-
 
       @media (max-width: 768px) {
         .navbar {
@@ -571,20 +566,12 @@
         .dashboard-main-content {
           padding: 1.5rem;
         }
-
-        .metrics-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .dashboard-sections {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
   <body>
     <nav class="navbar">
-      <div class="navbar-logo">
+      <div class="navbar-logo" onclick="location.href='homepage.html'">
         <i class="fa-solid fa-flask-vial"></i>
         <h1>Chemical Tracker</h1>
       </div>
@@ -593,7 +580,6 @@
           <i class="fas fa-cog"></i>
         </button>
 
-        <!-- Settings Modal -->
         <div id="settingsModal" class="settings-modal">
           <div class="user-info">
             <div class="user-icon">
@@ -616,31 +602,21 @@
           <button class="logout-btn" id="logoutButton">
             <i class="fas fa-sign-out-alt"></i> Logout
           </button>
+          <button class="dashboard" onclick="location.href='hero.html'">
+            Dashboard
+          </button>
         </div>
       </div>
     </nav>
 
     <main class="dashboard-main-content">
       <div class="dashboard-container">
-        <h1><i class="fas fa-chart-line"></i> Dashboard Overview</h1>
+        <h1><i class="fas fa-exclamation-triangle"></i> Low Stock Alerts</h1>
 
         <div class="metrics-grid">
-          <!-- Separated metrics for chemicals and items -->
-          <div class="metric-card">
-            <h2>Total Chemicals</h2>
-            <p id="totalChemicalsCount">0</p>
-          </div>
-          <div class="metric-card">
-            <h2>Total Items</h2>
-            <p id="totalItemsCount">0</p>
-          </div>
           <div class="metric-card">
             <h2>Low Stock Alerts</h2>
             <p id="lowStockCount">0</p>
-          </div>
-          <div class="metric-card">
-            <h2>Expiring Soon</h2>
-            <p id="expiringSoonCount">0</p>
           </div>
         </div>
 
@@ -649,20 +625,6 @@
             <h3><i class="fas fa-exclamation-triangle"></i> Low Stock Items</h3>
             <ul id="lowStockList">
               <li>Loading low stock items...</li>
-            </ul>
-          </div>
-
-          <div class="section-card">
-            <h3><i class="fas fa-calendar-times"></i> Expiring Soon</h3>
-            <ul id="expiringSoonList">
-              <li>Loading expiring items...</li>
-            </ul>
-          </div>
-
-          <div class="section-card">
-            <h3><i class="fas fa-history"></i> Recent Activity</h3>
-            <ul id="recentActivityList">
-              <li>Loading recent activity...</li>
             </ul>
           </div>
         </div>
@@ -675,19 +637,20 @@
 
     <div id="messageBox" class="message-box"></div>
 
-    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
     <script>
       // MANDATORY: Get app ID and Firebase config from global variables
-      const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+      const appId =
+        typeof __app_id !== "undefined" ? __app_id : "default-app-id";
       // Firebase configuration - REPLACE WITH YOUR ACTUAL PROJECT CONFIG
       const firebaseConfig = {
         apiKey: "AIzaSyAq1n2IIwMauj8nj7dEyPSg7wsKVID3AT8",
         authDomain: "chemical-inventory-e0681.firebaseapp.com",
-        databaseURL: "https://chemical-inventory-e0681-default-rtdb.firebaseio.com",
+        databaseURL:
+          "https://chemical-inventory-e0681-default-rtdb.firebaseio.com",
         projectId: "chemical-inventory-e0681",
         storageBucket: "chemical-inventory-e0681.appspot.com",
         messagingSenderId: "1040891808880",
@@ -699,380 +662,240 @@
       let auth;
       let db;
       let currentUserId = null;
-      let currentUserName = "Guest"; // Default name
+      let currentUserName = "Guest";
 
-      // Message Box functionality
-      const messageBox = document.getElementById('messageBox');
+      const messageBox = document.getElementById("messageBox");
       function showMessage(message, isError = false) {
         messageBox.innerText = message;
-        messageBox.classList.remove('error');
+        messageBox.classList.remove("error");
         if (isError) {
-          messageBox.classList.add('error');
+          messageBox.classList.add("error");
         }
-        messageBox.classList.add('show');
+        messageBox.classList.add("show");
         setTimeout(() => {
-          messageBox.classList.remove('show');
+          messageBox.classList.remove("show");
         }, 3000);
       }
 
-      // Initialize Firebase only if config is available and not using the default placeholder check
-      if (Object.keys(firebaseConfig).length > 0 && firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") { // Ensure apiKey is not empty placeholder
+      if (
+        Object.keys(firebaseConfig).length > 0 &&
+        firebaseConfig.apiKey &&
+        firebaseConfig.apiKey !== "YOUR_API_KEY"
+      ) {
         app = firebase.initializeApp(firebaseConfig);
         auth = firebase.auth();
         db = firebase.firestore();
 
-        // Sign in anonymously if no initial auth token
         const signInUser = async () => {
-            const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-            if (initialAuthToken) {
-                try {
-                    await auth.signInWithCustomToken(initialAuthToken);
-                    console.log("Signed in with custom token.");
-                } catch (error) {
-                    console.error("Error signing in with custom token:", error);
-                    await auth.signInAnonymously();
-                    console.log("Signed in anonymously due to custom token error.");
-                }
-            } else {
-                await auth.signInAnonymously();
-                console.log("Signed in anonymously.");
+          const initialAuthToken =
+            typeof __initial_auth_token !== "undefined"
+              ? __initial_auth_token
+              : null;
+          if (initialAuthToken) {
+            try {
+              await auth.signInWithCustomToken(initialAuthToken);
+            } catch (error) {
+              console.error("Error signing in with custom token:", error);
+              await auth.signInAnonymously();
             }
+          } else {
+            await auth.signInAnonymously();
+          }
         };
 
-        // Ensure user is authenticated before proceeding
-        auth.onAuthStateChanged(async user => {
-            if (user) {
-                currentUserId = user.uid;
-                currentUserName = user.displayName || "User";
-                document.getElementById('user-email-display').innerText = user.email || '-';
-                console.log("Dashboard: Authenticated user:", user.email || "anonymous", "UID:", user.uid);
-
-                // Fetch user's full name from Firestore for display
-                try {
-                    const userProfileDocRef = db.collection(`artifacts/${appId}/users/${currentUserId}/profile`).doc('details');
-                    const userDoc = await userProfileDocRef.get();
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        const firstName = userData.firstName || '';
-                        const lastName = userData.lastName || '';
-                        const fullName = `${firstName} ${lastName}`.trim();
-                        if (fullName) {
-                            currentUserName = fullName;
-                        }
-                    }
-                } catch (error) {
-                    console.warn("Could not fetch user profile from Firestore:", error);
+        auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            currentUserId = user.uid;
+            currentUserName = user.displayName || "User";
+            document.getElementById("user-email-display").innerText =
+              user.email || "-";
+            try {
+              const userProfileDocRef = db
+                .collection(`artifacts/${appId}/users/${currentUserId}/profile`)
+                .doc("details");
+              const userDoc = await userProfileDocRef.get();
+              if (userDoc.exists) {
+                const userData = userDoc.data();
+                const firstName = userData.firstName || "";
+                const lastName = userData.lastName || "";
+                const fullName = `${firstName} ${lastName}`.trim();
+                if (fullName) {
+                  currentUserName = fullName;
                 }
-                document.getElementById('user-name-display').innerText = currentUserName;
-
-                // Load dashboard data once authenticated
-                loadDashboardData();
-
-            } else {
-                console.log("No user logged in. Redirecting to login-a.html");
-                window.location.href = 'login-a.html'; // Redirect to login page
+              }
+            } catch (error) {
+              console.warn(
+                "Could not fetch user profile from Firestore:",
+                error
+              );
             }
+            document.getElementById("user-name-display").innerText =
+              currentUserName;
+
+            loadLowStockData();
+          } else {
+            window.location.href = "login-a.html";
+          }
         });
 
-        // Call the sign-in function on page load
         signInUser();
-
       } else {
-        console.error("Firebase config is not properly set. Please update firebaseConfig with your actual project details.");
-        document.body.innerHTML = '<p style="text-align:center; color: red;">Application not configured. Please update Firebase config in the script.</p>';
+        document.body.innerHTML =
+          '<p style="text-align:center; color: red;">Application not configured. Please update Firebase config in the script.</p>';
       }
 
-      // DOM elements for dashboard metrics and lists
-      const totalChemicalsCount = document.getElementById('totalChemicalsCount'); // New
-      const totalItemsCount = document.getElementById('totalItemsCount');     // New
-      const lowStockCount = document.getElementById('lowStockCount');
-      const expiringSoonCount = document.getElementById('expiringSoonCount');
-      const lowStockList = document.getElementById('lowStockList');
-      const expiringSoonList = document.getElementById('expiringSoonList');
-      const recentActivityList = document.getElementById('recentActivityList');
+      // DOM elements for low stock metrics and lists
+      const lowStockCount = document.getElementById("lowStockCount");
+      const lowStockList = document.getElementById("lowStockList");
 
-      // Default low stock threshold if not defined per item
-      const DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD = 12; // Aligned with your item page's hardcoded '12'
+      const DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD = 12;
 
-      // Number of days to consider 'expiring soon'
-      const EXPIRY_WARNING_DAYS = 60; // 60 days
-
-      // Function to load all dashboard data
-      function loadDashboardData() {
+      // Function to load only low stock data
+      function loadLowStockData() {
         if (!db || !currentUserId) {
-            console.error("Firestore or user not initialized. Cannot load dashboard data.");
-            // Set default messages if data cannot be loaded
-            totalChemicalsCount.innerText = 'N/A'; // Update new fields
-            totalItemsCount.innerText = 'N/A';     // Update new fields
-            lowStockCount.innerText = 'N/A';
-            expiringSoonCount.innerText = 'N/A';
-            lowStockList.innerHTML = '<li>Cannot load low stock items (authentication/DB issue).</li>';
-            expiringSoonList.innerHTML = '<li>Cannot load expiring items (authentication/DB issue).</li>';
-            recentActivityList.innerHTML = '<li>Cannot load recent activity (authentication/DB issue).</li>';
-            return;
-        }
-
-        // --- IMPORTANT: This collection path now matches your item page structure ---
-        // Chemicals/Items are assumed to be stored under db.collection("users").doc(currentUserId).collection("chemicals")
-        const inventoryRef = db.collection("users").doc(currentUserId).collection("chemicals");
-        // Keeping usage logs as a top-level collection within artifacts/${appId}
-        // If your usage logs are also under `users/{userId}/`, please specify that.
-        const usageLogsRef = db.collection(`artifacts/${appId}/usage_logs`);
-
-
-        // Real-time listener for Inventory Data
-        inventoryRef.onSnapshot(snapshot => {
-          const allItems = [];
-          snapshot.forEach(doc => {
-            allItems.push({ id: doc.id, ...doc.data() });
-          });
-          updateInventoryMetrics(allItems);
-          renderLowStockAndExpiringItems(allItems);
-        }, error => {
-          console.error("Error fetching inventory data:", error);
-          showMessage("Error loading inventory data. Check console for details.", true);
-          totalChemicalsCount.innerText = 'Err'; // Update new fields
-          totalItemsCount.innerText = 'Err';     // Update new fields
-          lowStockCount.innerText = 'Err';
-          expiringSoonCount.innerText = 'Err';
-          lowStockList.innerHTML = '<li>Failed to load low stock items.</li>';
-          expiringSoonList.innerHTML = '<li>Failed to load expiring items.</li>';
-        });
-
-        // Real-time listener for Usage Logs
-        // This query often requires an index. Check your console for a link to create it.
-        usageLogsRef.orderBy('timestamp', 'desc').limit(10).onSnapshot(snapshot => {
-          const recentActivities = [];
-          snapshot.forEach(doc => {
-            recentActivities.push({ id: doc.id, ...doc.data() });
-          });
-          renderRecentActivity(recentActivities);
-        }, error => {
-          console.error("Error fetching recent activity:", error);
-          showMessage("Error loading recent activity. Check console for details.", true);
-          recentActivityList.innerHTML = '<li>Failed to load recent activity.</li>';
-        });
-      }
-
-      // Function to update metric cards
-      function updateInventoryMetrics(items) {
-        let totalChemicals = 0;
-        let totalItems = 0;
-        let lowStock = 0;
-        let expiringSoon = 0;
-        const now = new Date();
-        const warningDate = new Date();
-        warningDate.setDate(now.getDate() + EXPIRY_WARNING_DAYS);
-
-        items.forEach(item => {
-          // Determine if it's a chemical or item based on 'category' field
-          // Default to 'unknown' if category is not defined or unrecognized
-          const category = item.category ? item.category.toLowerCase() : 'unknown';
-          console.log(`Processing item: ${item.name || item.id}, Category: ${category}`);
-
-          if (category === 'chemical') {
-            totalChemicals++;
-          } else if (category === 'item') {
-            totalItems++;
-          }
-          // If category is 'unknown', it won't be counted in either specific total,
-          // but will still be processed for low stock/expiry.
-
-          // Use 'available' field from your item page, falling back to 'currentQuantity' if needed.
-          const currentQuantity = item.available !== undefined ? item.available : item.currentQuantity;
-
-          // Prioritize item-specific lowStockThreshold, fall back to DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD (12)
-          const threshold = typeof item.lowStockThreshold === 'number' ? item.lowStockThreshold : DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD;
-
-          console.log(`  Quantity: ${currentQuantity}, Threshold: ${threshold}`);
-
-          if (currentQuantity !== undefined && currentQuantity !== null && currentQuantity <= threshold) {
-            lowStock++;
-            console.log(`  ${item.name || item.id} is LOW STOCK!`);
-          }
-
-          if (item.expiryDate && item.expiryDate.toDate) { // Check if it's a Firestore Timestamp
-            const expiry = item.expiryDate.toDate();
-            if (expiry < now) { // Expired
-                expiringSoon++; // Count as expiring soon if already expired
-                console.log(`  ${item.name || item.id} is EXPIRED!`);
-            } else if (expiry <= warningDate) { // Expiring soon within warning period
-                expiringSoon++;
-                console.log(`  ${item.name || item.id} is EXPIRING SOON!`);
-            }
-          }
-        });
-        totalChemicalsCount.innerText = totalChemicals; // Update new fields
-        totalItemsCount.innerText = totalItems;         // Update new fields
-        lowStockCount.innerText = lowStock;
-        expiringSoonCount.innerText = expiringSoon;
-      }
-
-      // Function to render low stock and expiring soon lists
-      function renderLowStockAndExpiringItems(items) {
-        lowStockList.innerHTML = ''; // Clear previous items
-        expiringSoonList.innerHTML = ''; // Clear previous items
-
-        let hasLowStock = false;
-        let hasExpiringSoon = false;
-
-        const now = new Date();
-        const warningDate = new Date();
-        warningDate.setDate(now.getDate() + EXPIRY_WARNING_DAYS);
-
-        items.forEach(item => {
-          // Use 'available' field from your item page, falling back to 'currentQuantity' if needed.
-          const currentQuantity = item.available !== undefined ? item.available : item.currentQuantity;
-          // Prioritize item-specific lowStockThreshold, fall back to DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD (12)
-          const threshold = typeof item.lowStockThreshold === 'number' ? item.lowStockThreshold : DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD;
-
-
-          // Low Stock
-          if (currentQuantity !== undefined && currentQuantity !== null && currentQuantity <= threshold) {
-            hasLowStock = true;
-            const li = document.createElement('li');
-            li.innerHTML = `
-              <span>${item.name || item.id}</span>
-              <span class="status-badge low-stock">Low: ${currentQuantity} ${item.unit || ''}</span>
-            `;
-            lowStockList.appendChild(li);
-          }
-
-          // Expiring Soon
-          if (item.expiryDate && item.expiryDate.toDate) {
-            const expiry = item.expiryDate.toDate();
-            if (expiry < now) { // Expired
-                hasExpiringSoon = true;
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${item.name || item.id}</span>
-                    <span class="status-badge expired">Expired: ${expiry.toLocaleDateString()}</span>
-                `;
-                expiringSoonList.appendChild(li);
-            } else if (expiry <= warningDate) { // Expiring soon
-                hasExpiringSoon = true;
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${item.name || item.id}</span>
-                    <span class="status-badge expiring-soon">Expires: ${expiry.toLocaleDateString()}</span>
-                `;
-                expiringSoonList.appendChild(li);
-            }
-          }
-        });
-
-        if (!hasLowStock) {
-          lowStockList.innerHTML = '<li>No low stock items found.</li>';
-        }
-        if (!hasExpiringSoon) {
-          expiringSoonList.innerHTML = '<li>No items expiring soon or expired.</li>';
-        }
-      }
-
-      // Function to render recent activity
-      function renderRecentActivity(activities) {
-        recentActivityList.innerHTML = ''; // Clear previous activities
-        if (activities.length === 0) {
-          recentActivityList.innerHTML = '<li>No recent activity.</li>';
+          lowStockCount.innerText = "N/A";
+          lowStockList.innerHTML =
+            "<li>Cannot load low stock items (authentication/DB issue).</li>";
           return;
         }
 
-        activities.forEach(activity => {
-          const li = document.createElement('li');
-          const date = activity.timestamp ? new Date(activity.timestamp.toDate()).toLocaleString() : 'N/A';
+        const inventoryRef = db
+          .collection("users")
+          .doc(currentUserId)
+          .collection("chemicals");
+
+        // Real-time listener for Inventory Data
+        inventoryRef.onSnapshot(
+          (snapshot) => {
+            const lowStockItems = [];
+            snapshot.forEach((doc) => {
+              const item = {
+                id: doc.id,
+                ...doc.data(),
+              };
+              const currentQuantity =
+                item.available !== undefined ? item.available : item.currentQuantity;
+              const threshold =
+                typeof item.lowStockThreshold === "number" ?
+                item.lowStockThreshold :
+                DEFAULT_LOW_STOCK_THRESHOLD_DASHBOARD;
+
+              if (
+                currentQuantity !== undefined &&
+                currentQuantity !== null &&
+                currentQuantity <= threshold
+              ) {
+                lowStockItems.push(item);
+              }
+            });
+            updateLowStockMetrics(lowStockItems);
+            renderLowStockItems(lowStockItems);
+          },
+          (error) => {
+            console.error("Error fetching low stock data:", error);
+            showMessage(
+              "Error loading low stock data. Check console for details.",
+              true
+            );
+            lowStockCount.innerText = "Err";
+            lowStockList.innerHTML = "<li>Failed to load low stock items.</li>";
+          }
+        );
+      }
+
+      // Function to update the low stock metric card
+      function updateLowStockMetrics(items) {
+        lowStockCount.innerText = items.length;
+      }
+
+      // Function to render the low stock list
+      function renderLowStockItems(items) {
+        lowStockList.innerHTML = "";
+        if (items.length === 0) {
+          lowStockList.innerHTML = "<li>No low stock items found.</li>";
+          return;
+        }
+
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          const currentQuantity =
+            item.available !== undefined ? item.available : item.currentQuantity;
           li.innerHTML = `
-            <div class="list-item-info">
-                <strong>${activity.itemName}</strong>
-                <div class="activity-details">Used ${activity.quantityUsed} by ${activity.usedByName || 'Unknown'} on ${date}</div>
-            </div>
+            <span>${item.name || item.id}</span>
+            <span class="status-badge low-stock">Low: ${
+              currentQuantity
+            } ${item.unit || ""}</span>
           `;
-          recentActivityList.appendChild(li);
+          lowStockList.appendChild(li);
         });
       }
 
+      // Settings Modal and Theme Toggle
+      const settingsBtn = document.getElementById("settingsBtn");
+      const settingsModal = document.getElementById("settingsModal");
+      const logoutButton = document.getElementById("logoutButton");
+      const toggleThemeBtn = document.getElementById("toggleTheme");
 
-      // --- Theme Toggling Logic (Copied from main app for consistency) ---
-      const toggleThemeBtn = document.getElementById('toggleTheme');
-      const body = document.body;
-      const themeIcon = toggleThemeBtn ? toggleThemeBtn.querySelector('i') : null;
-      const themeText = toggleThemeBtn ? toggleThemeBtn.querySelector('span') : null;
-
-      function applyTheme(theme) {
-          if (body) {
-            if (theme === 'dark') {
-                body.classList.add('dark-theme');
-                if (themeIcon) themeIcon.classList.remove('fa-cloud-sun');
-                if (themeIcon) themeIcon.classList.add('fa-moon');
-                if (themeText) themeText.innerText = 'Dark';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.remove('dark-theme');
-                if (themeIcon) themeIcon.classList.remove('fa-moon');
-                if (themeIcon) themeIcon.classList.add('fa-cloud-sun');
-                if (themeText) themeText.innerText = 'Light';
-                localStorage.setItem('theme', 'light');
-            }
-          }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-          const savedTheme = localStorage.getItem('theme');
-          if (savedTheme) {
-              applyTheme(savedTheme);
-          } else {
-              if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  applyTheme('dark');
-              } else {
-                  applyTheme('light');
-              }
-          }
+      settingsBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        settingsModal.classList.toggle("show");
       });
 
-      if (toggleThemeBtn) {
-        toggleThemeBtn.addEventListener('click', function() {
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'dark') {
-                applyTheme('light');
-            } else {
-                applyTheme('dark');
-            }
-        });
-      }
-      // --- End Theme Toggling Logic ---
+      window.addEventListener("click", (event) => {
+        if (
+          !settingsModal.contains(event.target) &&
+          !settingsBtn.contains(event.target)
+        ) {
+          settingsModal.classList.remove("show");
+        }
+      });
 
-      // --- Settings Modal Toggling Logic (Copied from main app for consistency) ---
-      const settingsBtn = document.getElementById('settingsBtn');
-      const settingsModal = document.getElementById('settingsModal');
-      const logoutButton = document.getElementById('logoutButton');
-
-      if (settingsBtn && settingsModal) {
-        settingsBtn.addEventListener('click', function(event) {
-          event.stopPropagation();
-          settingsModal.classList.toggle('show');
-        });
-
-        document.addEventListener('click', function(event) {
-          if (!settingsModal.contains(event.target) && !settingsBtn.contains(event.target)) {
-            settingsModal.classList.remove('show');
+      logoutButton.addEventListener("click", async () => {
+        if (auth) {
+          try {
+            await auth.signOut();
+            showMessage("Logged out successfully.");
+            setTimeout(() => {
+              window.location.href = "login-a.html";
+            }, 1000);
+          } catch (error) {
+            console.error("Logout Error:", error);
+            showMessage("Logout failed. Please try again.", true);
           }
-        });
+        }
+      });
+
+      function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-theme");
+          toggleThemeBtn.innerHTML =
+            '<i class="fa-solid fa-moon"></i> <span>Dark</span>';
+        } else {
+          document.body.classList.remove("dark-theme");
+          toggleThemeBtn.innerHTML =
+            '<i class="fa-solid fa-cloud-sun"></i> <span>Light</span>';
+        }
       }
 
-      if (logoutButton) {
-        logoutButton.addEventListener('click', () => {
-          if (auth) {
-            auth.signOut().then(() => {
-              console.log("User logged out successfully.");
-              window.location.href = 'login-a.html';
-            }).catch((error) => {
-              console.error("Error signing out:", error);
-            });
-          } else {
-              console.error("Firebase Auth not initialized. Cannot log out.");
-          }
-        });
-      }
-      // --- End Settings Modal Toggling Logic ---
+      setInitialTheme();
+
+      toggleThemeBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark-theme");
+        if (isDark) {
+          localStorage.setItem("theme", "dark");
+          toggleThemeBtn.innerHTML =
+            '<i class="fa-solid fa-moon"></i> <span>Dark</span>';
+        } else {
+          localStorage.setItem("theme", "light");
+          toggleThemeBtn.innerHTML =
+            '<i class="fa-solid fa-cloud-sun"></i> <span>Light</span>';
+        }
+      });
     </script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
